@@ -12,7 +12,7 @@ public readonly struct EquationToken: IEquatable<EquationToken>
     public static EquationToken Plus => new (1, Array.Empty<EquationVariable>());
     public static EquationToken Minus => new (-1, Array.Empty<EquationVariable>());
 
-    public EquationToken(double coefficient, IEnumerable<EquationVariable> variables)
+    public EquationToken(double coefficient, IReadOnlyCollection<EquationVariable> variables)
     {
         Coefficient = coefficient;
         Variables = NormalizeVariables(variables);
