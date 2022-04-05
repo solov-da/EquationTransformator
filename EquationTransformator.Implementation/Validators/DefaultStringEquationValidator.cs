@@ -4,13 +4,11 @@ using EquationTransformator.Core.Validators;
 
 namespace EquationTransformator.Implementation.Validators;
 
-public sealed class DefaultEquationValidator : IStringValidator
+public sealed class DefaultStringEquationValidator : IStringEquationValidator
 {
-    public string ErrorMessage { get; private set; }
-    public bool IsValid { get; private set; }
-
-    public bool Validate(string s)
+    public bool Validate(string s, out string? errorMessage)
     {
+        errorMessage = null;
         var equalsSignCount = 0;
         var latinLetterCount = 0;
 
@@ -24,20 +22,17 @@ public sealed class DefaultEquationValidator : IStringValidator
 
             if (equalsSignCount > 1)
             {
-                IsValid = false;
-                ErrorMessage = @"Invalid equation format! Number of characters ""="" is more than one.";
-                return IsValid;
+                errorMessage = @"Invalid equation format! Number of characters ""="" is more than one.";
+                return false;
             }
         }
 
         if (latinLetterCount == 0)
         {
-            IsValid = false;
-            ErrorMessage = @"Invalid equation format! Equation must contain at least one variable.";
-            return IsValid;
+            errorMessage = @"Invalid equation format! Equation must contain at least one variable.";
+            return false;
         }
-
-        IsValid = true;
-        return IsValid;
+        
+        return true;
     }
 }

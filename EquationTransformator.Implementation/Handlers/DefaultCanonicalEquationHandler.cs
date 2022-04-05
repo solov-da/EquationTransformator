@@ -9,22 +9,24 @@ namespace EquationTransformator.Implementation.Handlers;
 
 public sealed class DefaultCanonicalEquationHandler : ICanonicalEquationHandler
 {
-    public IEquationParser EquationParser { get; private set; } = new DefaultEquationParser();
-    public ICanonicalEquationBuilder CanonicalEquationBuilder { get; private set; } = new DefaultCanonicalEquationBuilder();
-
-    public DefaultCanonicalEquationHandler()
+    private readonly IEquationParser _equationParser;
+    private readonly ICanonicalEquationBuilder _canonicalEquationBuilder;
+    
+    public DefaultCanonicalEquationHandler() : this(new DefaultEquationParser(), new DefaultCanonicalEquationBuilder())
     {
 
     }
 
     public DefaultCanonicalEquationHandler(IEquationParser equationParser, ICanonicalEquationBuilder canonicalEquationBuilder)
     {
-        EquationParser = equationParser ?? throw new ArgumentNullException(nameof(equationParser));
-        CanonicalEquationBuilder = canonicalEquationBuilder ?? throw new ArgumentNullException(nameof(canonicalEquationBuilder));
+        _equationParser = equationParser ?? throw new ArgumentNullException(nameof(equationParser));
+        _canonicalEquationBuilder = canonicalEquationBuilder ?? throw new ArgumentNullException(nameof(canonicalEquationBuilder));
     }
 
-    public CanonicalEquation Processing(string s)
+    public CanonicalEquation Processing(string equationString)
     {
-        return CanonicalEquationBuilder.BuildCanonicalEquation(EquationParser.Parse(s));
+        var tokens = _equationParser.Parse(equationString);
+        var canonicalEquation = _canonicalEquationBuilder.Build(tokens);
+        return canonicalEquation;
     }
 }

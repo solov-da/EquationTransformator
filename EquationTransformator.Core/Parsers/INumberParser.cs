@@ -1,6 +1,6 @@
 ﻿namespace EquationTransformator.Core.Parsers;
 
-public interface INumberParser<T> where T: struct
+public interface INumberParser<out T>
 {
     T Parse(string s, int offset, ref int index);
 }

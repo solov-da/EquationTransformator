@@ -21,15 +21,15 @@ public sealed class CanonicalEquation
             {
                 if (sb.Length > 0 && token.Coefficient > 0)
                 {
-                    sb.Append($" + {((token.Coefficient == 1 && token.Variables.Length > 0) ? string.Empty : token.Coefficient.ToString(CultureInfo.InvariantCulture))}{token.ToString()}");
+                    sb.Append($" + {(((int)token.Coefficient == 1 && token.Variables.Length > 0) ? string.Empty : token.Coefficient.ToString(CultureInfo.InvariantCulture))}{token.ToString()}");
                 }
                 else if (sb.Length == 0 && token.Coefficient > 0)
                 {
-                    sb.Append($"{((token.Coefficient == 1 && token.Variables.Length > 0) ? string.Empty : token.Coefficient.ToString(CultureInfo.InvariantCulture))}{token.ToString()}");
+                    sb.Append($"{(((int)token.Coefficient == 1 && token.Variables.Length > 0) ? string.Empty : token.Coefficient.ToString(CultureInfo.InvariantCulture))}{token.ToString()}");
                 }
                 else if (token.Coefficient < 0)
                 {
-                    var coefficient = Math.Abs(token.Coefficient);
+                    var coefficient = (int) Math.Abs(token.Coefficient);
                     sb.Append($" - {((coefficient == 1 && token.Variables.Length > 0) ? string.Empty : coefficient.ToString(CultureInfo.InvariantCulture))}{token.ToString()}");
                 }
                 else
@@ -38,10 +38,7 @@ public sealed class CanonicalEquation
                 }                          
             }
 
-            if (sb.Length == 0)
-                sb.Append("0 = 0");
-            else
-                sb.Append(" = 0");
+            sb.Append(sb.Length == 0 ? "0 = 0" : " = 0");
 
             return sb.ToString();
         });

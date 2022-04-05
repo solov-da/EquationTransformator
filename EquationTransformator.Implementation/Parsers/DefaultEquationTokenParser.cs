@@ -6,21 +6,18 @@ namespace EquationTransformator.Implementation.Parsers;
 
 public sealed class DefaultEquationTokenParser: IEquationTokenParser
 {
-    public IEquationVariableParser EquationVariableParser { get; private set; } = new DefaultEquationVariableParser();
-    public INumberParser<double> CoefficientParser { get; private set; } = new DefaultDoubleParser();
+    private readonly IEquationVariableParser _equationVariableParser;
+    private readonly INumberParser<double> _coefficientParser;
 
-    public DefaultEquationTokenParser()
+    public DefaultEquationTokenParser() : this(new DefaultEquationVariableParser(), new DefaultDoubleParser())
     {
 
     }
 
     public DefaultEquationTokenParser(IEquationVariableParser equationVariableParser, INumberParser<double> coefficientParser)
     {
-        EquationVariableParser =
-            equationVariableParser ?? throw new ArgumentNullException(nameof(equationVariableParser));
-
-        CoefficientParser =
-            coefficientParser ?? throw new ArgumentNullException(nameof(coefficientParser));
+        _equationVariableParser = equationVariableParser ?? throw new ArgumentNullException(nameof(equationVariableParser));
+        _coefficientParser = coefficientParser ?? throw new ArgumentNullException(nameof(coefficientParser));
     }
 
     public EquationToken Parse(string s, int offset, ref int index)
@@ -33,11 +30,11 @@ public sealed class DefaultEquationTokenParser: IEquationTokenParser
         {
             if (s[i].IsStrongDigit())
             {
-                coefficient *= CoefficientParser.Parse(s, i, ref i);
+                coefficient *= _coefficientParser.Parse(s, i, ref i);
             }
             else if (s[i].IsLatinLetter())
             {
-                variables.Add(EquationVariableParser.Parse(s, i, ref i));
+                variables.Add(_equationVariableParser.Parse(s, i, ref i));
             }
             else
             {

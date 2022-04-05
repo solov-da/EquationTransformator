@@ -5,16 +5,16 @@ namespace EquationTransformator.Implementation.Parsers;
 
 public sealed class DefaultEquationVariableParser: IEquationVariableParser
 {
-    public INumberParser<int> PowerParser { get; private set; } = new DefaultIntegerParser();
+    private readonly INumberParser<int> _powerParser;
 
-    public DefaultEquationVariableParser()
+    public DefaultEquationVariableParser(): this(new DefaultIntegerParser())
     {
 
     }
 
     public DefaultEquationVariableParser(INumberParser<int> powerParser)
     {
-        PowerParser = powerParser ?? throw new ArgumentNullException(nameof(powerParser));
+        _powerParser = powerParser ?? throw new ArgumentNullException(nameof(powerParser));
     }
 
     public EquationVariable Parse(string s, int offset, ref int index)
@@ -23,10 +23,10 @@ public sealed class DefaultEquationVariableParser: IEquationVariableParser
         index = offset;
         var variable = char.ToLower(s[offset++]);
             
-        if (offset < s.Length && s[offset++].Equals(Constants.Characters.Power))
+        if (offset < s.Length && s[offset++] == Constants.Characters.Power)
         {
             if (offset < s.Length)
-                power = PowerParser.Parse(s, offset, ref index);
+                power = _powerParser.Parse(s, offset, ref index);
         }
 
         return new EquationVariable(variable, power);

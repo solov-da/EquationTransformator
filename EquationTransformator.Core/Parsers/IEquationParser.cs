@@ -2,5 +2,5 @@
 
 public interface IEquationParser
 {
-    ICollection<EquationToken> Parse(string s);
+    IReadOnlyCollection<EquationToken> Parse(string s);
 }

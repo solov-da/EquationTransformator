@@ -7,32 +7,44 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        if (args.Length == 0)
+        var handler = new DefaultCanonicalEquationHandler();
+        
+        if (args.Length == 2)
         {
-            Processing(new DefaultCanonicalEquationHandler(), false);
+            if (args[0] != "-file") 
+                return;
+            
+            var fileName = args[1];
+            
+            if (string.IsNullOrWhiteSpace(fileName))
+                return;
+            
+            var directoryName = Path.GetDirectoryName(args[1]);
+            
+            if (string.IsNullOrWhiteSpace(directoryName))
+                return;
+
+            var outFilePath = Path.Combine(directoryName, $"{Path.GetFileNameWithoutExtension(fileName)}.out");
+
+            using var sr = File.OpenText(fileName);
+            using var sw = File.CreateText(outFilePath);
+            Console.SetIn(sr);
+            Console.SetOut(sw);
+            Processing(handler, true);
         }
         else
         {
-            if (args[0] != "-file") return;
-             
-            using (var sr = File.OpenText(args[1]))
-            using (var sw = File.CreateText(Path.Combine(Path.GetDirectoryName(args[1]), 
-                       $"{Path.GetFileNameWithoutExtension(args[1])}.out")))
-            {
-                Console.SetIn(sr);
-                Console.SetOut(sw);
-                Processing(new DefaultCanonicalEquationHandler(), true);
-            }
+            Processing(handler, false);
         }
     }
        
     private static void Processing(ICanonicalEquationHandler handler, bool fileMode)
     {
-        string equation;
+        string? equation;
 
         Console.WriteLine("Enter equation:");
 
-        while ((equation = Console.ReadLine()) != null)
+        while ((equation = Console.ReadLine()) is not null)
         {
             try
             {

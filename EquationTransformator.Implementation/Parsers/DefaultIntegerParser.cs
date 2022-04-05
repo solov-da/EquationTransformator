@@ -1,12 +1,11 @@
-﻿using EquationTransformator.Core.Extension;
+﻿using System.Globalization;
+using EquationTransformator.Core.Extension;
 using EquationTransformator.Core.Parsers;
 
 namespace EquationTransformator.Implementation.Parsers;
 
 public sealed class DefaultIntegerParser : INumberParser<int>
 {
-    public IFormatProvider FormatProvider { get; set; }
-
     public int Parse(string s, int offset, ref int index)
     {
         var length = 0;
@@ -23,9 +22,8 @@ public sealed class DefaultIntegerParser : INumberParser<int>
         }
 
         if (length == 0)
-            throw new ArgumentException($@"Invalid character ""{s[index]}"" in {index} positon.");
+            throw new ArgumentException($@"Invalid character ""{s[index]}"" in {index} position.");
 
-        return FormatProvider == null ? int.Parse(s.Substring(offset, length)) : 
-            int.Parse(s.Substring(offset, length), FormatProvider);
+        return int.Parse(s.Substring(offset, length), CultureInfo.InvariantCulture);
     }
 }

@@ -2,5 +2,5 @@
 
 public interface ICanonicalEquationHandler
 {
-    CanonicalEquation Processing(string s);
+    CanonicalEquation Processing(string equationString);
 }

@@ -2,15 +2,15 @@
 
 namespace EquationTransformator.Core;
 
-public struct EquationToken: IEquatable<EquationToken>
+public readonly struct EquationToken: IEquatable<EquationToken>
 {
     public readonly double Coefficient;
     public readonly EquationVariable[] Variables;
     private readonly Lazy<string> _toString;
 
     public static IComparer<EquationToken> Comparer { get; } = new EquationTokenComparer();
-    public static EquationToken Plus => new EquationToken(1, new EquationVariable[]{});
-    public static EquationToken Minus => new EquationToken(-1, new EquationVariable[]{});
+    public static EquationToken Plus => new (1, Array.Empty<EquationVariable>());
+    public static EquationToken Minus => new (-1, Array.Empty<EquationVariable>());
 
     public EquationToken(double coefficient, IEnumerable<EquationVariable> variables)
     {

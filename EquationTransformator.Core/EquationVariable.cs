@@ -1,6 +1,6 @@
 ﻿namespace EquationTransformator.Core;
 
-public struct EquationVariable: IEquatable<EquationVariable>
+public readonly struct EquationVariable: IEquatable<EquationVariable>
 {
     public readonly char Variable;
     public readonly int Power;

@@ -2,5 +2,5 @@
 
 public interface ICanonicalEquationBuilder
 {
-    CanonicalEquation BuildCanonicalEquation(ICollection<EquationToken> tokens);
+    CanonicalEquation Build(IReadOnlyCollection<EquationToken> tokens);
 }

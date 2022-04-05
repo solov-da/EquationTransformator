@@ -5,7 +5,7 @@ namespace EquationTransformator.Implementation.Builders;
 
 public sealed class DefaultCanonicalEquationBuilder : ICanonicalEquationBuilder
 {
-    public CanonicalEquation BuildCanonicalEquation(ICollection<EquationToken> tokens)
+    public CanonicalEquation Build(IReadOnlyCollection<EquationToken> tokens)
     {
         var canonicalTokens = tokens
             .GroupBy(t => t.ToString())
