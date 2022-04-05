@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquationTransformator.Core", "EquationTransformator.Core\EquationTransformator.Core.csproj", "{174CBBCF-C564-4458-AF4E-4ED78198054B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquationTransformator.Implementation", "EquationTransformator.Implementation\EquationTransformator.Implementation.csproj", "{6B210D80-275B-47FC-BB9C-2DD98F93288D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquationTransformator.Tests", "EquationTransformator.Tests\EquationTransformator.Tests.csproj", "{06AF2D03-1CB3-4121-A893-127756FC1EF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquationTransformator", "EquationTransformator\EquationTransformator.csproj", "{F6886908-7EAA-4F9D-AF1F-B85569C15E4E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{174CBBCF-C564-4458-AF4E-4ED78198054B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{174CBBCF-C564-4458-AF4E-4ED78198054B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{174CBBCF-C564-4458-AF4E-4ED78198054B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{174CBBCF-C564-4458-AF4E-4ED78198054B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B210D80-275B-47FC-BB9C-2DD98F93288D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B210D80-275B-47FC-BB9C-2DD98F93288D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B210D80-275B-47FC-BB9C-2DD98F93288D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B210D80-275B-47FC-BB9C-2DD98F93288D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06AF2D03-1CB3-4121-A893-127756FC1EF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06AF2D03-1CB3-4121-A893-127756FC1EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06AF2D03-1CB3-4121-A893-127756FC1EF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06AF2D03-1CB3-4121-A893-127756FC1EF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6886908-7EAA-4F9D-AF1F-B85569C15E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6886908-7EAA-4F9D-AF1F-B85569C15E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6886908-7EAA-4F9D-AF1F-B85569C15E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6886908-7EAA-4F9D-AF1F-B85569C15E4E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
