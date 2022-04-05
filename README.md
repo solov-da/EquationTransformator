@@ -35,14 +35,14 @@ Enter equation:
 ---0(-x+y) = 2(y-3)z
 
 Canonical equation:
- - 2yz + 6z = 0
+- 2yz + 6z = 0
 
 
 Enter equation:
 ---0(-x+y) = 2((-1)(y-3)(-1))z
 
 Canonical equation:
- - 2yz + 6z = 0
+- 2yz + 6z = 0
 
 
 Enter equation:
